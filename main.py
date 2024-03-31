@@ -12,13 +12,13 @@ def get_black_px(bin_img):
     return black_px
 
 imgs = sorted(glob('.\\img\\360p_bad_apple\\*.png'), key= lambda x: int(x.split('\\')[-1].split('_')[-1].split('.')[0]))
+img_len = len(imgs) - 1
 
 fig, ax = plt.subplots()
 
 output_dir = '.\\render\\frames\\'
 os.makedirs(output_dir, exist_ok=True)
 
-img_len = len(imgs)
 for i, img_path in enumerate(imgs):
     ax.clear()
 
@@ -28,11 +28,9 @@ for i, img_path in enumerate(imgs):
     x = [-x[0] for x in black_px]
     y = [y[1] for y in black_px]
 
-    # Update the scatter plot data
     ax.scatter(y, x, s=0.1, color='#000')
     ax.set_title(f"frame {i:04d}")
 
-    # Save figure
     filename = f"frame_{i:04d}.png"
     print(f"{i:04d}/{img_len}")
 
